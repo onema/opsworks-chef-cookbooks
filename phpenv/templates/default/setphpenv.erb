@@ -1,0 +1,10 @@
+<?php
+
+$environments = "<%= node[:custom_env] %>";
+foreach($environments as $environment)
+{
+    foreach($environment as $variable => $value) 
+    {
+        putenv("$variable=$value");
+    }
+}
