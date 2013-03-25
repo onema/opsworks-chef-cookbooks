@@ -1,0 +1,35 @@
+{
+  "name": "composer",
+  "description": "Installs/Configures Composer",
+  "long_description": "Description\n===========\n\nThis cookbook provides an easy way to install Composer, a dependency manager for PHP.\n\nMore information?\nhttp://getcomposer.org/\n\nRequirements\n============\n\n## Cookbooks:\n\n* php\n\n## Platforms:\n\n* Ubuntu\n* Debian\n* RHEL\n* CentOS\n* Fedora\n\nAttributes\n==========\n\n* `node['composer']['install_globally']` - Installation method, ':source' or ':package' - default true\n* `node['composer']['prefix']` - Location prefix of where the installation files will go if installing globally\n* `node['composer']['url']` - Location of the source\n* `node['composer']['install_dir']` - Installation target directory (absolute or relative path) if installing locally\n\nUsage\n=====\n\n1) include `recipe[composer]` in a run list\n2) tweak the attributes via attributes/default.rb\n\t--- OR ---\n\toverride the attribute on a higher level (http://wiki.opscode.com/display/chef/Attributes#Attributes-AttributesPrecedence)\n\nReferences\n==========\n\n* [Composer home page] (http://getcomposer.org/)\n\nLicense and Authors\n===================\n\nAuthor: David Joos <david@escapestudios.com>\nAuthor: Escape Studios Development <dev@escapestudios.com>\nCopyright: 2012, Escape Studios\n\nUnless otherwise noted, all files are released under the MIT license,\npossible exceptions will contain licensing information in them.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.",
+  "maintainer": "Escape Studios",
+  "maintainer_email": "dev@escapestudios.com",
+  "license": "MIT",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0"
+  },
+  "dependencies": {
+    "php": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.0.2"
+}
