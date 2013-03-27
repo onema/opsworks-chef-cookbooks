@@ -6,8 +6,10 @@
 
     RewriteRule ^(.*)$ index.php/$1 [L]
     
-    # Environment Variables
-  <% @env.sort.each do |key, val| %>
-    <%= "SetEnv " + key.to_s + " " + val.to_s.inspect  + "\n"%>
-  <% end %>
+    <IfModule mod_env.c>
+        # Environment Variables
+      <% @env.sort.each do |key, val| %>
+        <%= "SetEnv " + key.to_s + " " + val.to_s.inspect  + "\n"%>
+      <% end %>
+    </IfModule>
 </IfModule>
