@@ -7,7 +7,7 @@ node[:deploy].each do |application, deploy|
     mode "0660"
     puts 'THIS IS THE APPLICATION NAME YYYYYYYYY: ' + application
 
-    variables( :env => node[:custom_env][application])
+    variables( :env => node[:custom_env])
 
     only_if do
      File.directory?("#{deploy[:deploy_to]}/current/public")
