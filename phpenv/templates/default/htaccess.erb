@@ -9,7 +9,11 @@
     <IfModule mod_env.c>
         # Environment Variables
       <% @env.sort.each do |key, val| %>
-        <%= "SetEnv " + key.to_s + " " + val.to_s.inspect  + "\n"%>
+        <% @application == key.to_s then %>
+            <% val.each do |key, val| %>
+                <%= "SetEnv " + key.to_s + " " + val.to_s.inspect  + "\n"%>
+            <% end %>
+        <% end %>
       <% end %>
     </IfModule>
 </IfModule>
