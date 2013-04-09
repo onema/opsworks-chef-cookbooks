@@ -6,7 +6,10 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
     mode "0660"
 
-    variables( :env => node[:application.to_s])
+    app = node[:opsworks][:application]
+    appname = application[:name]
+
+    variables( {:env => node[:custom_env][app], :application => app, :applicationname => appname} )
 
     only_if do
      File.directory?("#{deploy[:deploy_to]}/current/public")
