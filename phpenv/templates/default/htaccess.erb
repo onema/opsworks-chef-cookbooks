@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule ^(.*)$ index.php/$1 [L]
+    
+    <IfModule mod_env.c>
+        # Environment Variables for application <%= @application %>
+        # Environment Variables for application <%= @applicationname %>
+
+      <% @env.sort.each do |key, val| %>
+        <%= "SetEnv " + var.to_s + " " + val.to_s.inspect  + "\n"%>
+      <% end %>
+    </IfModule>
+</IfModule>
