@@ -6,8 +6,10 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
     mode "0660"
 
-    puts node[:opsworks][:application]
-    puts application[:name]
+    puts ">>> #{application}" 
+    puts ">>> #{node[:deploy][:application]}" 
+    log ">>> #{application}" 
+    log ">>> #{node[:deploy][:application]}"
 
     variables( :env => node[:custom_env] )
 
