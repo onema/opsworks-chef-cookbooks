@@ -8,10 +8,8 @@ node[:deploy].each do |application, deploy|
 
     puts ">>> #{application}" 
     puts ">>> #{node[:deploy][:application]}" 
-    log ">>> #{application}" 
-    log ">>> #{node[:deploy][:application]}"
 
-    variables( :env => node[:custom_env] )
+    variables( :env => node[:custom_env], :application1 => ">>> #{application}", :application2 =>  ">>> #{node[:deploy][:application]}" )
 
     only_if do
      File.directory?("#{deploy[:deploy_to]}/current/public")
