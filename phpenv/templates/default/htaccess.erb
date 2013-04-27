@@ -9,7 +9,7 @@
     <IfModule mod_env.c>
         # Environment Variables for application <%= @application %>
 
-      <% @values.sort.each do | env_value | %> 
+      <% @env[:values].sort.each do | env_value | %> 
         SetEnv <%= env_value %> 
       <% end %>
     </IfModule>
