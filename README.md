@@ -34,7 +34,8 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
 - **"Repository URL"** use git@github.com:onema/chef-cookbooks.git or your Fork Url.
 - Set the SSH key if you have one, if not this can be left blank as long as the repo is public. 
 - Use the following format for the Custom Chef JSON:
-```json
+
+```
 {
     "custom_env": {
         "staging_site": {
@@ -52,11 +53,11 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
                 "SOME_API_KEY nahnah", 
                 "ANOTHER_API_KEY hello-monkey!" 
             ] 
-        },
-        ***add more applications if you have them...***
+        }
     }
 }
 ```
+
 The name custom_env is required. The values staging_site and production_site must match your application name.
 
 In the array of values for each application you can put any number of environment variables. The format is
