@@ -2,11 +2,11 @@
 
 # Summary
 
-* Currently it is not possible to setup Environment Variables for PHP stacks in 
-* Amazon Web Services OpsWorks. This simple Chef recipe to add environment variables 
-* to the .htaccess file by using a template.  The .htaccess file is used for the 
-* framework [FuelPHP](http://fuelphp.com) but it can be used for other frameworks
-* and php projects. Just change the destination. 
+Currently it is not possible to setup Environment Variables for PHP stacks in 
+ Amazon Web Services OpsWorks. This simple Chef recipe to add environment variables 
+ to the .htaccess file by using a template.  The .htaccess file is used for the 
+ framework [FuelPHP](http://fuelphp.com) but it can be used for other frameworks
+ and php projects. Just change the destination. 
 
 #Requirements
 * Apache2
