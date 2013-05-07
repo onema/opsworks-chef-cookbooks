@@ -8,4 +8,4 @@ node[:deploy].each do |application, deploy|
     php composer.phar install
     EOH
   end
-end
+end 
