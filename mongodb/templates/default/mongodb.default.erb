@@ -6,9 +6,6 @@ NAME="<%= @name %>"
 
 DAEMON_OPTS=""
 
-<% if @bind_ip -%>
-DAEMON_OPTS="$DAEMON_OPTS --bind_ip <%= @bind_ip %>"
-<% end -%>
 <%= @port ? "DAEMON_OPTS=\"$DAEMON_OPTS --port #{@port}\"" : "" %>
 <%= @dbpath ? "DAEMON_OPTS=\"$DAEMON_OPTS --dbpath #{@dbpath}\"" : "" %>
 <%= @logpath ? "DAEMON_OPTS=\"$DAEMON_OPTS --logpath #{@logpath}\"" : "" %>
@@ -22,12 +19,3 @@ DAEMON_OPTS="$DAEMON_OPTS --bind_ip <%= @bind_ip %>"
 <% if @replicaset_name %>
 DAEMON_OPTS="$DAEMON_OPTS --replSet <%= @replicaset_name %>"
 <% end %>
-
-<% if @enable_rest %>
-DAEMON_OPTS="$DAEMON_OPTS --rest"
-<% end %>
-
-<% if %w(centos redhat fedora amazon).include? node.platform -%>
-DAEMON_OPTS="$DAEMON_OPTS --fork"
-DBPATH="<%= @dbpath %>"
-<% end -%>

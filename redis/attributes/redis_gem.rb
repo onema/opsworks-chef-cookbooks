@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: mongodb
-# Attributes:: default
+# Cookbook Name:: redisio
+# Attribute::redis_gem
 #
-# Copyright 2010, edelight GmbH
+# Copyright 2013, Brian Bianco <brian.bianco@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +17,7 @@
 # limitations under the License.
 #
 
-default[:mongodb][:dbpath] = "/var/lib/mongodb"
-default[:mongodb][:logpath] = "/var/log/mongodb"
-default[:mongodb][:port] = 27017
+#Allow for a redis ruby gem to be installed
+default['redisio']['gem']['name'] = 'redis'
+default['redisio']['gem']['version'] = nil
 
-# roles
-default[:mongodb][:client_roles] = []
-default[:mongodb][:cluster_name] = nil
-default[:mongodb][:shard_name] = "default"

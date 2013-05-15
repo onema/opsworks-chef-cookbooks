@@ -1,14 +1,5 @@
 #!/bin/sh
 #
-### BEGIN INIT INFO
-# Provides:          <%= @provides %>
-# Required-Start:    $local_fs $remote_fs
-# Required-Stop:     $local_fs $remote_fs
-# Default-Start:
-# Default-Stop:
-# Short-Description: Start/stop mongodb <%= @provides %>
-### END INIT INFO
-#
 # init.d script with LSB support.
 #
 # Copyright (c) 2007 Javier Fernandez-Sanguino <jfs@debian.org>
@@ -38,7 +29,7 @@ DAEMON_OPTS="--config /etc/mongodb.conf"
 
 ENABLE_MONGODB=yes
 
-NAME=<%= @provides %>
+NAME=`basename $0`
 
 # Include mongodb defaults if available
 if [ -f /etc/default/$NAME ] ; then

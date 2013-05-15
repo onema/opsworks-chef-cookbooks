@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: mongodb
-# Attributes:: default
+# Cookbook Name:: redisio
+# Recipe:: enable
 #
-# Copyright 2010, edelight GmbH
+# Copyright 2013, Brian Bianco <brian.bianco@gmail.com>
+#
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +18,13 @@
 # limitations under the License.
 #
 
-default[:mongodb][:dbpath] = "/var/lib/mongodb"
-default[:mongodb][:logpath] = "/var/log/mongodb"
-default[:mongodb][:port] = 27017
+redis = node['redisio']
 
-# roles
-default[:mongodb][:client_roles] = []
-default[:mongodb][:cluster_name] = nil
-default[:mongodb][:shard_name] = "default"
+redis['servers'].each do |current_server|
+  server_name = current_server["name"] || current_server["port"]
+  resource = resources("service[redis#{server_name}]")
+  resource.action Array(resource.action)
+  resource.action << :start
+  resource.action << :enable
+end
+

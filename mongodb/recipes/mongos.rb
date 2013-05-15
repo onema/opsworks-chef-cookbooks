@@ -43,5 +43,4 @@ mongodb_instance "mongos" do
   logpath      node['mongodb']['logpath']
   dbpath       node['mongodb']['dbpath']
   configserver configsrv
-  enable_rest  node['mongodb']['enable_rest']
 end
