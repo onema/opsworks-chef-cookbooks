@@ -3,7 +3,7 @@ node[:deploy].each do |app_name, deploy|
   template "#{deploy[:deploy_to]}/current/app/config/parameters.yml" do
     source "parameters.yml.erb"
     mode 0755
-    group root
+    group "root"
 
     if platform?("ubuntu")
       owner "deploy"
