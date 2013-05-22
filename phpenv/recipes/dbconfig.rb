@@ -1,6 +1,6 @@
 node[:deploy].each do |app_name, deploy|
 
-  template "#{deploy[:deploy_to]}/current/db-connect.php" do
+  template "#{deploy[:deploy_to]}/current/app/config/parameters.yml" do
     source "db-connect.php.erb"
     mode 0660
     group deploy[:group]
@@ -20,7 +20,7 @@ node[:deploy].each do |app_name, deploy|
     )
 
    only_if do
-     File.directory?("#{deploy[:deploy_to]}/current")
+     File.directory?("#{deploy[:deploy_to]}/current/app/config")
    end
   end
 end
