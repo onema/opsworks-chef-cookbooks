@@ -4,7 +4,7 @@
 
 node[:deploy].each do |application, deploy|
 
-  # Update ACL to ensure acl gives proper permission to cache and logs
+  # Set ACL rules to give proper permission to cache and logs
   script "update_acl" do
     interpreter "bash"
     user "root"
