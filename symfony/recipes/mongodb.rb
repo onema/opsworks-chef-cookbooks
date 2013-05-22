@@ -3,26 +3,26 @@
 #  action :install
 #end
 
-node[:deploy].each do |application, deploy|
-  script "install_php_mongodb" do
-    interpreter "bash"
-    user "root"
-    cwd "/"
-    code <<-EOH
-    pecl install mongo
-    EOH
-  end
-end 
-
-#execute 'install_php_mongo_driver' do
-#  if node[:kernel][:machine] == 'x86_64'
-#    libdir = 'lib64'
-#  else
-#    libdir = 'lib'
+#node[:deploy].each do |application, deploy|
+#  script "install_php_mongodb" do
+#    interpreter "bash"
+#    user "root"
+#    cwd "/"
+#    code <<-EOH
+#    pecl install mongo
+#    EOH
 #  end
-#  command "pecl install mongo"
-#  action :run
-#end
+#end 
+
+execute 'install_php_mongo_driver' do
+  if node[:kernel][:machine] == 'x86_64'
+    libdir = 'lib64'
+  else
+    libdir = 'lib'
+  end
+  command "pecl install mongo"
+  action :run
+end
 
 template 'mongo.ini' do
   case node[:platform]
