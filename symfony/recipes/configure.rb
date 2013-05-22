@@ -12,4 +12,14 @@ node[:deploy].each do |application, deploy|
      File.directory?("#{deploy[:deploy_to]}/current/web")
     end
   end
+  
+  script "update_acl" do
+    interpreter "bash"
+    user "root"
+    cwd "#{deploy[:deploy_to]}/current"
+    code <<-EOH
+    setfacl -R -m u:www-data:rwX -m u:ubuntu:rwX app/cache/ app/logs/
+    setfacl -dR -m u:www-data:rwx -m u:ubuntu:rwx app/cache/ app/logs/
+    EOH
+  end
 end
