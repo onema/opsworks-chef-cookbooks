@@ -2,14 +2,14 @@ node[:deploy].each do |app_name, deploy|
 
   template "#{deploy[:deploy_to]}/current/app/config/parameters.yml" do
     source "parameters.yml.erb"
-    mode 0660
+    mode 0755
     group deploy[:group]
 
-    if platform?("ubuntu")
-      owner "www-data"
-    elsif platform?("amazon")
-      owner "apache"
-    end
+#    if platform?("ubuntu")
+#      owner "www-data"
+#   elsif platform?("amazon")
+#      owner "apache"
+#    end
 
     variables(
       :host => (deploy[:database][:host] rescue nil),
