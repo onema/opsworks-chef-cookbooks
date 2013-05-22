@@ -1,7 +1,7 @@
 node[:deploy].each do |app_name, deploy|
 
   template "#{deploy[:deploy_to]}/current/app/config/parameters.yml" do
-    source "db-connect.php.erb"
+    source "parameters.yml.erb"
     mode 0660
     group deploy[:group]
 
