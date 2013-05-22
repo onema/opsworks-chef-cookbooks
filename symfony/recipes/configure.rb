@@ -3,7 +3,19 @@
 # https://help.ubuntu.com/community/FilePermissionsACLs
 
 node[:deploy].each do |application, deploy|
-  
+
+  # Update ACL to ensure acl gives proper permission to cache and logs
+  script "update_acl" do
+    interpreter "bash"
+    user "root"
+    cwd "#{deploy[:deploy_to]}/current"
+    code <<-EOH
+    mkdir -p app/cache app/logs
+    setfacl -R -m u:www-data:rwX -m u:ubuntu:rwX app/cache/ app/logs/
+    setfacl -dR -m u:www-data:rwx -m u:ubuntu:rwx app/cache/ app/logs/
+    EOH
+  end
+
   template "#{deploy[:deploy_to]}/current/web/.htaccess" do
     source "htaccess.erb"
     owner deploy[:user] 
@@ -17,17 +29,15 @@ node[:deploy].each do |application, deploy|
     end
   end
   
-  script "update_acl" do
+  script "install_composer" do
     interpreter "bash"
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
-    echo "UUID=07aebd28-24e3-cf19-e37d-1af9a23a45d4    /srv/www    ext4   defaults,acl   0   2" >> /etc/fstab
-    mount -o remount /srv/www
-    
-    mkdir -p app/cache app/logs
-    setfacl -R -m u:www-data:rwX -m u:ubuntu:rwX app/cache/ app/logs/
-    setfacl -dR -m u:www-data:rwx -m u:ubuntu:rwx app/cache/ app/logs/
+    curl -s https://getcomposer.org/installer | php
+    php composer.phar install --optimize-autoloader
+    php composer.phar update
+    php app/console cache:clear --env=prod --no-debug
     EOH
   end
 end
