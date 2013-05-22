@@ -1,3 +1,7 @@
+# see for more info:
+# http://symfony.com/doc/2.2/book/installation.html
+# https://help.ubuntu.com/community/FilePermissionsACLs
+
 node[:deploy].each do |application, deploy|
   
   template "#{deploy[:deploy_to]}/current/web/.htaccess" do
@@ -18,6 +22,9 @@ node[:deploy].each do |application, deploy|
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
+    echo "UUID=07aebd28-24e3-cf19-e37d-1af9a23a45d4    /srv/www    ext4   defaults,acl   0   2" >> /etc/fstab
+    mount -o remount /srv/www
+    
     mkdir -p app/cache app/logs
     setfacl -R -m u:www-data:rwX -m u:ubuntu:rwX app/cache/ app/logs/
     setfacl -dR -m u:www-data:rwx -m u:ubuntu:rwx app/cache/ app/logs/
