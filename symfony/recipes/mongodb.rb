@@ -15,11 +15,6 @@
 #end 
 
 execute 'install_php_mongo_driver' do
-  if node[:kernel][:machine] == 'x86_64'
-    libdir = 'lib64'
-  else
-    libdir = 'lib'
-  end
   command "pecl install mongo"
   action :run
 end
