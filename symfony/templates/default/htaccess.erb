@@ -1,18 +1,3 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-
-    RewriteRule ^(.*)$ index.php/$1 [L]
-    
-    
-</IfModule>
-
-
-
-
-
 # Use the front controller as index file. It serves as fallback solution when
 # every other rewrite/redirect fails (e.g. in an aliased environment without
 # mod_rewrite). Additionally, this reduces the matching process for the
