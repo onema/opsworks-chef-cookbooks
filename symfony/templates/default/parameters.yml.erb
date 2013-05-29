@@ -1,3 +1,4 @@
+# Parameter values for application <%= @application %>
 parameters:
     database_driver: pdo_mysql
     database_host: <%= @host%>
@@ -7,8 +8,7 @@ parameters:
     database_password: <%= @password%>
     mailer_transport: smtp
     mailer_host: email-smtp.us-east-1.amazonaws.com
-    mailer_user: <%= @mailer_user%>
-    mailer_password: <%= @mailer_password%>
-    locale: en
-    secret: eb67dfa44aae9ec749fe1b63d8d37851
     database_path: null
+<% @parameters[@application.to_s][:parameters].sort.each do | param_value | %> 
+    <%= param_value %> 
+<% end %>
