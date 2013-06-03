@@ -25,7 +25,7 @@ node[:deploy].each do |application, deploy|
     mode "0660"
 
     variables( 
-        :env => (node[:custom_env] rescue nill), 
+        :env => (node[:custom_env] rescue nil), 
         :application => "#{application}" 
     )
 
