@@ -12,10 +12,10 @@ node[:deploy].each do |application, deploy|
     end
 
     variables(
+      :dbname => (node[:database][:dbname] rescue nil),
       :host => (node[:database][:host] rescue nil),
       :user => (node[:database][:username] rescue nil),
       :password => (node[:database][:password] rescue nil),
-      :dbname => (node[:database][:dbname] rescue nil),
       :port => (node[:database][:port] rescue nil)
     )
 
