@@ -1,6 +1,6 @@
 node[:deploy].each do |application, deploy|
 
-  template "#{deploy[:deploy_to]}/current/fuel/app/config/db.php" do
+  template "#{deploy[:deploy_to]}/current/fuel/app/config/{node[:environment]}/db.php" do
     source "db.php.erb"
     mode 0660
     group deploy[:group]
@@ -20,7 +20,7 @@ node[:deploy].each do |application, deploy|
     )
 
    only_if do
-     File.directory?("#{deploy[:deploy_to]}/current/fuel/app/config")
+     File.directory?("#{deploy[:deploy_to]}/current/fuel/app/config/{node[:environment]}")
    end
   end
 end
