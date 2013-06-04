@@ -14,7 +14,7 @@ node[:deploy].each do |application, deploy|
     variables(
       :dbname => (node[:custom_env][application.to_s][:database][:dbname] rescue nil),
       :host => (node[:custom_env][application.to_s][:database][:host] rescue nil),
-      :user => (node[:custom_env][application.to_s][:database][:username] rescue nil),
+      :user => (node[:custom_env][application.to_s][:database][:user] rescue nil),
       :password => (node[:custom_env][application.to_s][:database][:password] rescue nil),
       :port => (node[:custom_env][application.to_s][:database][:port] rescue nil)
     )
