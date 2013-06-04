@@ -1,6 +1,6 @@
 node[:deploy].each do |application, deploy|
 
-  template "#{deploy[:deploy_to]}/current/fuel/app/config/#{node[:application][:environment]}/db.php" do
+  template "#{deploy[:deploy_to]}/current/fuel/app/config/#{node[application.to_s][:environment]}/db.php" do
     source "db.php.erb"
     mode 0660
     group deploy[:group]
@@ -12,11 +12,11 @@ node[:deploy].each do |application, deploy|
     end
 
     variables(
-      :dbname => (node[:application][:database][:dbname] rescue nil),
-      :host => (node[:application][:database][:host] rescue nil),
-      :user => (node[:application][:database][:username] rescue nil),
-      :password => (node[:application][:database][:password] rescue nil),
-      :port => (node[:application][:database][:port] rescue nil)
+      :dbname => (node[application.to_s][:database][:dbname] rescue nil),
+      :host => (node[application.to_s][:database][:host] rescue nil),
+      :user => (node[application.to_s][:database][:username] rescue nil),
+      :password => (node[application.to_s][:database][:password] rescue nil),
+      :port => (node[application.to_s][:database][:port] rescue nil)
     )
 
    only_if do
