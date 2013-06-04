@@ -1,6 +1,6 @@
 node[:deploy].each do |application, deploy|
 
-  template "#{deploy[:deploy_to]}/current/fuel/app/config/{node[:application][:environment]}/db.php" do
+  template "#{deploy[:deploy_to]}/current/fuel/app/config/#{node[:application][:environment]}/db.php" do
     source "db.php.erb"
     mode 0660
     group deploy[:group]
