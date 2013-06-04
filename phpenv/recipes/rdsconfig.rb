@@ -20,7 +20,7 @@ node[:deploy].each do |application, deploy|
     )
 
    only_if do
-     File.directory?("#{deploy[:deploy_to]}/current/fuel/app/config/{node[:environment]}")
+     File.directory?("#{deploy[:deploy_to]}/current/fuel/app/config/#{node[:custom_env][application.to_s][:environment]}")
    end
   end
 end
