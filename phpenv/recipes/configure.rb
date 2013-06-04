@@ -8,6 +8,7 @@ node[:deploy].each do |application, deploy|
 
     variables( 
         :env => (node[:custom_env] rescue nil), 
+        :environment => ((node[:custom_env][application.to_s][:environment])
         :application => "#{application}" 
     )
 

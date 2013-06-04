@@ -2,7 +2,7 @@ node[:deploy].each do |application, deploy|
 
   template "#{deploy[:deploy_to]}/current/fuel/app/config/#{node[:custom_env][application.to_s][:environment]}/db.php" do
     source "db.php.erb"
-    mode 0755
+    mode 0644
     group deploy[:group]
 
     if platform?("ubuntu")
