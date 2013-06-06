@@ -1,3 +1,6 @@
+#
+# Uses values db config values set in the custom JSON of the Stack. 
+#
 node[:deploy].each do |application, deploy|
 
   template "#{deploy[:deploy_to]}/current/fuel/app/config/#{node[:custom_env][application.to_s][:environment]}/db.php" do

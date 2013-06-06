@@ -36,23 +36,36 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
 - Use the following format for the Custom Chef JSON:
 
 ```
-{
+{ 
     "custom_env": {
         "staging_site": {
-            "values" : [ 
-                "FUEL_ENV staging", 
-                "CACHE_TIME 3600", 
-                "SOME_API_KEY BlahBlah", 
-                "ANOTHER_API_KEY helloWorld!" 
-            ] 
+            "env_values" : [ 
+                "AWS_ACCESS_KEY_ID qwerYUIOP",
+                "AWS_SECRET_KEY 123RTYU890OPakeicj"
+            ],
+            "database": {
+                "dbname": "staging-database-name", 
+                "host": "staging-database.abcd1234.us-east-1.rds.amazonaws.com", 
+                "user": "my-user-name", 
+                "password": "P@s5w0rD",
+                "port": "3306"
+           },
+           "environment": "staging" 
         },
         "production_site": {
-            "values" : [ 
-                "FUEL_ENV production", 
+            "env_values" : [ 
                 "CACHE_TIME 1234", 
                 "SOME_API_KEY nahnah", 
                 "ANOTHER_API_KEY hello-monkey!" 
-            ] 
+            ],
+            "database": {
+                "dbname": "production-database-name", 
+                "host": "production-database.abcd1234.us-east-1.rds.amazonaws.com", 
+                "user": "my-user-name", 
+                "password": "P@s5w0rD",
+                "port": "3306"
+           },
+           "environment": "production" 
         }
     }
 }
@@ -60,7 +73,7 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
 
 The name custom_env is required. The values staging_site and production_site must match your application name.
 
-In the array of values for each application you can put any number of environment variables. The format is
+In the array of ```env_values``` for each application you can put any number of environment variables. The format is
 
 "KEY value"
 
@@ -71,12 +84,13 @@ Array
 (
 //... 
     [ANOTHER_API_KEY] => hello-monkey!
-    [FUEL_ENV] => production
     [GA_API_CACHE_TIME] => 1234
     [SOME_API_KEY] => nahnah
 //... 
 )
 ```
+
+The environment value is not an optional parameter and will be used in the htaccess template to set the correct environment.
 
 **NOTE: THE RECIPE WILL NOT WORK IF YOUR APPLICATION NAME HAS SPACES OR DASHES "-" BETWEEN WORDS. Use underscores "_" to separate words to avoid problems**
 
@@ -84,6 +98,12 @@ Array
 - Under **"Custom Chef recipes"** -> **"Deploy"** add 
 
 ``` phpenv::configure ```
+
+- To setup the values for an RDS database (assuming the DB has been added to the correct OpsWorks security group)
+use the recipe ```phpenv::rdsconfig```. This recipe will create a db.php in the correct environment and the values 
+will be taken from the database values in the custom JSON. 
+- To setup the values for a MySQL database created in an OpsWorks layer, you don't need to add the custom database section and 
+instead use the recipe ```phpenv::dbconfig``` all the values will be pulled from the deploy[:database] available to the recipe. 
 
 That's it! next time you deploy your application you will have a custom .htaccess file that contains all the environment variables. 
 
