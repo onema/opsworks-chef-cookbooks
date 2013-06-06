@@ -1,8 +1,11 @@
-node[:deploy].each do |app_name, deploy|
+#
+# Get the database information of a MySQL layer to generate the db.php config file
+#
+node[:deploy].each do |application, deploy|
 
-  template "#{deploy[:deploy_to]}/current/app/config/parameters.yml" do
-    source "db-connect.php.erb"
-    mode 0660
+  template "#{deploy[:deploy_to]}/current/fuel/app/config/#{node[:custom_env][application.to_s][:environment]}/db.php" do
+    source "db.php.erb"
+    mode 0644
     group deploy[:group]
 
     if platform?("ubuntu")
@@ -12,15 +15,15 @@ node[:deploy].each do |app_name, deploy|
     end
 
     variables(
+      :dbname => (deploy[:database][:database] rescue nil),
       :host => (deploy[:database][:host] rescue nil),
       :user => (deploy[:database][:username] rescue nil),
       :password => (deploy[:database][:password] rescue nil),
-      :db => (deploy[:database][:database] rescue nil),
-      :table => (node[:phpapp][:dbtable] rescue nil)
+      :port => "3306"
     )
 
    only_if do
-     File.directory?("#{deploy[:deploy_to]}/current/app/config")
+     File.directory?("#{deploy[:deploy_to]}/current/fuel/app/config/#{node[:custom_env][application.to_s][:environment]}")
    end
   end
 end
