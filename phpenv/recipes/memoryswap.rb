@@ -1,5 +1,3 @@
-
-
 #
 # Add memory swap: This should be used in instances with low RAM to prevent 
 # "out of memory" issues.

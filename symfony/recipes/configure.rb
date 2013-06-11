@@ -65,4 +65,7 @@ node[:deploy].each do |application, deploy|
 #    php app/console cache:clear --env=prod --no-debug
 #    EOH
 #  end
+
+  symfony::paramconfig 
+
 end
