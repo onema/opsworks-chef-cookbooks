@@ -66,6 +66,7 @@ node[:deploy].each do |application, deploy|
 #    EOH
 #  end
 
-  symfony::paramconfig 
+   
+  include_recipe 'symfony::paramconfig'
 
 end
