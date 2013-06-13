@@ -8,7 +8,7 @@ node[:deploy].each do |application, deploy|
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
-    env FUEL_ENV="#{node[:custom_env][application.to_s][:environment"]}" php oil r migrate
+    env FUEL_ENV="#{node[:custom_env][application.to_s][:environment]}" php oil r migrate
     EOH
   end
 end 
