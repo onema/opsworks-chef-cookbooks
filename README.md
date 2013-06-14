@@ -39,7 +39,7 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
 { 
     "custom_env": {
         "staging_site": {
-            "env_values" : [ 
+            "env_vars" : [ 
                 "AWS_ACCESS_KEY_ID qwerYUIOP",
                 "AWS_SECRET_KEY 123RTYU890OPakeicj"
             ],
@@ -53,7 +53,7 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
            "environment": "staging" 
         },
         "production_site": {
-            "env_values" : [ 
+            "env_vars" : [ 
                 "CACHE_TIME 1234", 
                 "SOME_API_KEY nahnah", 
                 "ANOTHER_API_KEY hello-monkey!" 
@@ -73,7 +73,7 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
 
 The name custom_env is required. The values staging_site and production_site must match your application name.
 
-In the array of ```env_values``` for each application you can put any number of environment variables. The format is
+In the array of ```env_vars``` for each application you can put any number of environment variables. The format is
 
 "KEY value"
 
