@@ -10,3 +10,6 @@
 [submodule "build-essential"]
 	path = build-essential
 	url = git@github.com:opscode-cookbooks/build-essential.git
+[submodule "xml"]
+	path = xml
+	url = git@github.com:opscode-cookbooks/xml.git
