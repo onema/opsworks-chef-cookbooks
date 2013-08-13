@@ -1,6 +1,5 @@
 #
-# Taken from:
-# http://docs.aws.amazon.com/opsworks/latest/userguide/gettingstarted.walkthrough.photoapp.3.html
+# Manage access through security gropus as this will give access to any IP Address
 #
 node[:deploy].each do |application, deploy|
   script "start_beanstalkd" do
@@ -8,7 +7,7 @@ node[:deploy].each do |application, deploy|
     user "root"
     cwd "/"
     code <<-EOH
-    beanstalkd -d -l 127.0.0.1 -p 11300
+    beanstalkd -d -l 0.0.0.0 -p 11300
     EOH
   end
 end 
