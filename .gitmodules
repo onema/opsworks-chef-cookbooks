@@ -1,0 +1,15 @@
+[submodule "mongodb"]
+	path = mongodb
+	url = git@github.com:alleluu/chef-mongodb.git
+[submodule "apt"]
+	path = apt
+	url = git@github.com:opscode-cookbooks/apt.git
+[submodule "yum"]
+	path = yum
+	url = git@github.com:opscode-cookbooks/yum.git
+[submodule "build-essential"]
+	path = build-essential
+	url = git@github.com:opscode-cookbooks/build-essential.git
+[submodule "xml"]
+	path = xml
+	url = git@github.com:opscode-cookbooks/xml.git
