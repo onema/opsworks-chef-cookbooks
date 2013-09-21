@@ -1,6 +1,6 @@
 node[:deploy].each do |application, deploy|
   
-  template "#{deploy[:deploy_to]}/current/node[:custom_env][application.to_s][:path_to_vars]/environment_variables.php" do
+  template "#{deploy[:deploy_to]}/current/#{node[:custom_env][application.to_s][:path_to_vars]}/environment_variables.php" do
     source "environment_variables.php.erb"
     owner deploy[:user] 
     group deploy[:group]
@@ -13,7 +13,7 @@ node[:deploy].each do |application, deploy|
     )
 
     only_if do
-     File.directory?("#{deploy[:deploy_to]}/current/public")
+     File.directory?("#{deploy[:deploy_to]}/current/#{node[:custom_env][application.to_s][:path_to_vars]}")
     end
   end
 end
