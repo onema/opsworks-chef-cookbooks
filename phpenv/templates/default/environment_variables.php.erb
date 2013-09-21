@@ -3,5 +3,5 @@
  * Environment Variables for application <%= @application %>
  */
 <% @env[@application.to_s][:env_vars].sort.each do | env_value | %> 
-    define('<%= env_value %>'); 
+    putenv("<%= env_value %>");
 <% end %>
