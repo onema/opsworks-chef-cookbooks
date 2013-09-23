@@ -4,7 +4,7 @@ node[:deploy].each do |application, deploy|
     source "environment_variables.php.erb"
     owner deploy[:user] 
     group deploy[:group]
-    mode "0660"
+    mode "0666"
 
     variables( 
         :env => (node[:custom_env] rescue nil), 

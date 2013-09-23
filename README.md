@@ -27,7 +27,7 @@ Some of the cookbooks functionality include:
 * mod_env must be enabled. 
 
 # Version
-0.1.2
+0.2.0
 
 # Credits
 Some parts of this code where taken from the [ace-cookbooks opsworks_app_environment](https://github.com/ace-cookbooks/opsworks_app_environment). Also see [this](https://forums.aws.amazon.com/thread.jspa?threadID=118107).
