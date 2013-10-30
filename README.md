@@ -27,7 +27,7 @@ Some of the cookbooks functionality include:
 * mod_env must be enabled. 
 
 # Version
-0.2.0
+0.3.0
 
 # Credits
 Some parts of this code where taken from the [ace-cookbooks opsworks_app_environment](https://github.com/ace-cookbooks/opsworks_app_environment). Also see [this](https://forums.aws.amazon.com/thread.jspa?threadID=118107).
@@ -40,6 +40,55 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
 - Depending on what recipes you use you may need to set a Custom Chef JSON.
 
 # Cookbooks
+
+##cronjobs
+This cookbook creates cronjobs based on configuration values
+
+###cronjobs::default (experimental)
+Default will create multiple cronjobs based on the following configuration values:
+
+```
+{
+    "custom_env": {
+        "staging_site": {
+            "cron_jobs": [  
+                "send_email" {
+                    "hour":   "1", 
+                    "minute": "10", 
+                    "weekday": "6",
+                    "command": "cd /srv/www/staging_site/current && php .lib/mailing.php" 
+                },
+                "process_jobs" {
+                    "hour":   "3", 
+                    "minute": "15", 
+                    "weekday": "3",
+                    "command": "cd /srv/www/staging_site/current && php app/console command:start:jobs" 
+                },
+            ]
+        },
+        "production_site": {
+            "cron_jobs": [  
+                "do_something_fun" {
+                    "hour":   "1", 
+                    "minute": "10", 
+                    "weekday": "6",
+                    "command": "cd /srv/www/production_site/current && php app/console hello:world" 
+                },
+                "do_something_stupid" {
+                    "hour":   "3", 
+                    "minute": "15", 
+                    "weekday": "3",
+                    "command": "cd /srv/www/production_site/current && php app/console memory:leak" 
+                },
+            ]
+        }
+    }
+}
+```
+
+Use on **setup** life cycle only.
+
+For more information see the [AWS OpsWorks](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-extend-cron.html) documentation.
 
 ##phpenv
 This cookbook contains utility recipes to help setup applications.
