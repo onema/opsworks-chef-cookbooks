@@ -11,10 +11,10 @@ node[:deploy].each do |application, deploy|
     end
   end
 
-  script "install_composer" do
+  script "php_redis" do
     interpreter "bash"
     user "root"
-    cwd "#{deploy[:deploy_to]}/current"
+    cwd "/"
     code <<-EOH
     pecl install redis
     service apache2 restart
