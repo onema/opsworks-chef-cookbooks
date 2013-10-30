@@ -1,23 +1,18 @@
-node[:deploy].each do |application, deploy|
+execute 'install_php_redis' do
+  command "pecl install redis"
+  action :run
+end
 
-  template "/etc/php5/apache2/conf.d/redis.ini" do
-    source "redis.ini.erb"
-    owner deploy[:user] 
-    group deploy[:group]
-    mode "0666"
-
-    only_if do
-     File.directory?("/etc/php5/apache2/conf.d")
-    end
+template 'redis.ini' do
+  case node[:platform]
+  when 'centos','redhat','fedora','amazon'
+    path "/etc/php.d/redis.ini"
+  when 'debian','ubuntu'
+    path "/etc/php5/conf.d/redis.ini"
   end
-
-  script "php_redis" do
-    interpreter "bash"
-    user "root"
-    cwd "/"
-    code <<-EOH
-    pecl install redis
-    service apache2 restart
-    EOH
-  end
-end 
+  source 'redis.ini.erb'
+  owner 'root'
+  group 'root'
+  mode 0644
+  notifies :restart, resources(:service => 'apache2')
+end
