@@ -52,29 +52,33 @@ Default will create multiple cronjobs based on the following configuration value
     "custom_env": {
         "staging_site": {
             "cron_jobs": [  
-                "send_email" {
+                {
+                    "name": "send_email",
                     "hour":   "1", 
                     "minute": "10", 
                     "weekday": "6",
                     "command": "cd /srv/www/staging_site/current && php .lib/mailing.php" 
                 },
-                "process_jobs" {
+                {
+                    "name": "process_jobs", 
                     "hour":   "3", 
                     "minute": "15", 
                     "weekday": "3",
                     "command": "cd /srv/www/staging_site/current && php app/console command:start:jobs" 
-                },
+                }
             ]
         },
         "production_site": {
             "cron_jobs": [  
-                "do_something_fun" {
+                {
+                    "name": "do_something_fun",
                     "hour":   "1", 
                     "minute": "10", 
                     "weekday": "6",
                     "command": "cd /srv/www/production_site/current && php app/console hello:world" 
                 },
-                "do_something_stupid" {
+                {
+                    "name": "do_something_stupid",
                     "hour":   "3", 
                     "minute": "15", 
                     "weekday": "3",
