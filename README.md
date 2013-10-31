@@ -27,7 +27,7 @@ Some of the cookbooks functionality include:
 * mod_env must be enabled. 
 
 # Version
-0.2.0
+0.3.0
 
 # Credits
 Some parts of this code where taken from the [ace-cookbooks opsworks_app_environment](https://github.com/ace-cookbooks/opsworks_app_environment). Also see [this](https://forums.aws.amazon.com/thread.jspa?threadID=118107).
@@ -57,8 +57,13 @@ See these references for more info:
 - [Symfony2, Composer, Capifony and an EC2 Micro instance](http://jonathaningram.com.au/category/composerphp/)
 - [ErrorException: proc_open(): fork failed - Cannot allocate memory in phar](https://github.com/composer/composer/issues/945)
 
-###phpenv::mongodb
-This recipe installs the mongodb php driver using PECL (Requires the **php-pear** OS package). 
+###phpenv::php_mongodb
+This recipe installs the mongodb php module using PECL (Requires the **php-pear** OS package). 
+
+Use recipe on **Setup** ONLY.
+
+###phpenv::php_redis
+This recipe installs the redis php module using PECL (Requires the **php-pear** OS package). 
 
 Use recipe on **Setup** ONLY.
 
