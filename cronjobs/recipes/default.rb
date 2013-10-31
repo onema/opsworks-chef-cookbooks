@@ -13,7 +13,7 @@ node[:deploy].each do |application, deploy|
       day     value_day.to_s
       month   value_month.to_s
       weekday value_weekday.to_s
-      command value_command.to_s
+      command "#{cron_values[:command]}"
     end
   end
 end
