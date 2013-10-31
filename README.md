@@ -53,17 +53,21 @@ Default will create multiple cronjobs based on the following configuration value
         "staging_site": {
             "cron_jobs": [  
                 {
-                    "name": "send_email",
-                    "hour":   "1", 
+                    // Send an email every sunday at 8:10
+                    "name": "send_email_sunday_8",
                     "minute": "10", 
+                    "hour":   "8", 
                     "weekday": "6",
                     "command": "cd /srv/www/staging_site/current && php .lib/mailing.php" 
                 },
                 {
-                    "name": "process_jobs", 
-                    "hour":   "3", 
-                    "minute": "15", 
-                    "weekday": "3",
+                    // Run at 8:00 PM every weekday Monday through Friday ONLY in November. 
+                    Notice there is no day
+                    "name": "run_at_20h_nov", 
+                    "minute": "0", 
+                    "hour":   "20",
+                    "month":   "10", 
+                    "weekday": "1-5",
                     "command": "cd /srv/www/staging_site/current && php app/console command:start:jobs" 
                 }
             ]
@@ -71,17 +75,15 @@ Default will create multiple cronjobs based on the following configuration value
         "production_site": {
             "cron_jobs": [  
                 {
-                    "name": "do_something_fun",
-                    "hour":   "1", 
-                    "minute": "10", 
-                    "weekday": "6",
+                    // Run Every 12 Hours - 1AM and 1PM
+                    "name": "run_every_12h",
+                    "hour":   "1-13", 
                     "command": "cd /srv/www/production_site/current && php app/console hello:world" 
                 },
                 {
-                    "name": "do_something_stupid",
-                    "hour":   "3", 
+                    // Run every 15 minutes
+                    "name": "do_something_stupid_every_15m",
                     "minute": "15", 
-                    "weekday": "3",
                     "command": "cd /srv/www/production_site/current && php app/console memory:leak" 
                 },
             ]
