@@ -57,6 +57,7 @@ Default will create multiple cronjobs based on the following configuration value
                     "name": "send_email_sunday_8",
                     "minute": "10", 
                     "hour":   "8", 
+                    "month" :  "*",
                     "weekday": "6",
                     "command": "cd /srv/www/staging_site/current && php .lib/mailing.php" 
                 },
@@ -77,13 +78,19 @@ Default will create multiple cronjobs based on the following configuration value
                 {
                     // Run Every 12 Hours - 1AM and 1PM
                     "name": "run_every_12h",
-                    "hour":   "1-13", 
+                    "minute" :  "*",
+                    "hour":   "1-13",
+                    "month" :  "*",
+                    "weekday" :  "*",
                     "command": "cd /srv/www/production_site/current && php app/console hello:world" 
                 },
                 {
                     // Run every 15 minutes
                     "name": "do_something_stupid_every_15m",
                     "minute": "15", 
+                    "hour" :  "*",
+                    "month" :  "*",
+                    "weekday" :  "*",
                     "command": "cd /srv/www/production_site/current && php app/console memory:leak" 
                 },
             ]
@@ -92,9 +99,11 @@ Default will create multiple cronjobs based on the following configuration value
 }
 ```
 
-Use on **setup** life cycle only.
+Use on **setup** and **deploy** life cycles.
 
 For more information see the [AWS OpsWorks](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-extend-cron.html) documentation.
+
+All parameters are required.
 
 ##phpenv
 This cookbook contains utility recipes to help setup applications.
