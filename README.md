@@ -27,7 +27,7 @@ Some of the cookbooks functionality include:
 * mod_env must be enabled. 
 
 # Version
-0.3.0
+0.4.0
 
 # Credits
 Some parts of this code where taken from the [ace-cookbooks opsworks_app_environment](https://github.com/ace-cookbooks/opsworks_app_environment). Also see [this](https://forums.aws.amazon.com/thread.jspa?threadID=118107).
@@ -40,6 +40,64 @@ Some parts of this code where taken from the [ace-cookbooks opsworks_app_environ
 - Depending on what recipes you use you may need to set a Custom Chef JSON.
 
 # Cookbooks
+
+##cronjobs
+This cookbook creates cronjobs based on configuration values
+
+###cronjobs::default (experimental)
+Default will create multiple cronjobs based on the following configuration values:
+
+```
+{
+    "custom_env": {
+        "cron_jobs": [  
+            {
+                // Send an email every sunday at 8:10
+                "name": "send_email_sunday_8",
+                "minute": "10", 
+                "hour":   "8", 
+                "month" :  "*",
+                "weekday": "6",
+                "command": "cd /srv/www/staging_site/current && php .lib/mailing.php" 
+            },
+            {
+                // Run at 8:00 PM every weekday Monday through Friday ONLY in November. 
+                Notice there is no day
+                "name": "run_at_20h_nov", 
+                "minute": "0", 
+                "hour":   "20",
+                "month":   "10", 
+                "weekday": "1-5",
+                "command": "cd /srv/www/staging_site/current && php app/console command:start:jobs" 
+            },
+            {
+                // Run Every 12 Hours - 1AM and 1PM
+                "name": "run_every_12h",
+                "minute" :  "*",
+                "hour":   "1-13",
+                "month" :  "*",
+                "weekday" :  "*",
+                "command": "cd /srv/www/production_site/current && php app/console hello:world" 
+            },
+            {
+                // Run every 15 minutes
+                "name": "do_something_stupid_every_15m",
+                "minute": "15", 
+                "hour" :  "*",
+                "month" :  "*",
+                "weekday" :  "*",
+                "command": "cd /srv/www/production_site/current && php app/console memory:leak" 
+            },
+        ]
+    }
+}
+```
+
+Use on **setup** and **deploy** life cycles.
+
+For more information see the [AWS OpsWorks](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-extend-cron.html) documentation.
+
+All parameters are required.
 
 ##phpenv
 This cookbook contains utility recipes to help setup applications.
