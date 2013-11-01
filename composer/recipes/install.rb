@@ -10,7 +10,6 @@ node[:deploy].each do |application, deploy|
     code <<-EOH
     curl -s https://getcomposer.org/installer | php
     php composer.phar install -n --optimize-autoloader --prefer-source
-    #php composer.phar update
     EOH
   end
 end 
