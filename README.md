@@ -471,6 +471,19 @@ This recipe requires acl_setup. This recipe should be broken down into multiple 
 - Includes the symfony::paramconfig recipe
 - Executes `php app/console cache:clear --env=prod --no-debug` if the `warmup_cache` option is **defined** in the application configuration
 
+```json
+{ 
+    "custom_env": {
+        "production_site": {
+            // ...
+            "warmup_cache": true,
+            // ...
+        }
+    }
+}
+```
+
+
 ###symfony::paramconfig
 This recipe creates a custom parameters.yml using values from the custom Chef JSON entry ```"parameters"```:
 ```json
@@ -480,7 +493,6 @@ This recipe creates a custom parameters.yml using values from the custom Chef JS
             "values" : [ 
                 // for custom environment values 
             ],
-            "warmup_cache": true,
             "parameters" : [ 
                 "locale: en",
                 "database_name: my_database_name"
