@@ -1,11 +1,11 @@
 # AWS OpstWorks PHP Cookbooks. 
 
 # Summary
-> "OpsWorks is a DevOps solution for managing the coplete application lifecycle, 
+> "OpsWorks is a DevOps solution for managing the complete application lifecycle, 
 > including resource provisioning, configuration management, applcation deployment 
-> software updates, monitori9ng and access cotrol."
+> software updates, monitoring and access cotrol."
 
-This repository contains a small collection of recipes to help setup PHP application in OpsWorks.
+This repository contains a small collection of recipes to help setup PHP applications in OpsWorks.
 Currently two PHP frameworks are supported: [FuelPHP](http://fuelphp.com) and [Symfony 2.x](http://symfony.com).
 
 Some of the cookbooks functionality include:
@@ -20,15 +20,16 @@ Some of the cookbooks functionality include:
 - Symfony configuration of writable directories (requires acl_setup).
 - Startup Beanstalk and Supervisor to manage worker queues (requires beanstalk and suprevisor OS packages).  
 - Adwords authentication configuration for PHP SDK. 
+- New Relic cookbook.
 
 
 #Requirements
 * Ubuntu Instances.
 * Apache2.
-* mod_env must be enabled. 
+* mod_env must be enabled (for htaccess environment variables). 
 
 # Version
-0.5.0
+0.6.0
 
 # Credits
 Some parts of this code where taken from the [ace-cookbooks opsworks_app_environment](https://github.com/ace-cookbooks/opsworks_app_environment). Also see [this](https://forums.aws.amazon.com/thread.jspa?threadID=118107).
@@ -139,6 +140,42 @@ Use on **setup** and **deploy** life cycles.
 For more information see the [AWS OpsWorks](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-extend-cron.html) documentation.
 
 All parameters are required.
+
+##newrelic
+This is a submodule of the cookbook [Escapestudios/NewRelic](https://github.com/escapestudios-cookbooks/newrelic)
+
+###newrelic::default 
+Runs `recipe[newrelic:repository]` and `recipe[newrelic::server-monitor]`
+- OR -
+Include the bits and pieces explicitly in a run list:
+`recipe[newrelic::repository]`
+`recipe[newrelic::server-monitor]`
+`recipe[newrelic::php-agent]`
+`recipe[newrelic::python-agent]`
+`recipe[newrelic::dotnet]`
+`recipe[newrelic::nodejs]`
+
+Run on `Setup` Life cycle event.
+
+2)
+Change the `node['newrelic']['server_monitoring']['license']` and `node['newrelic']['application_monitoring']['license']` attributes to your New Relic license keys
+
+```yaml
+{ 
+    "newrelic":{ 
+        "server_monitoring": { 
+            "license": "server-license" 
+        }, 
+        "application_monitoring": { 
+            "license": "app-license" 
+        } 
+    },
+    "custom_env": {
+        // ...
+    }
+}
+```
+
 
 ##phpenv
 This cookbook contains utility recipes to help setup applications.

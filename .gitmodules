@@ -13,3 +13,6 @@
 [submodule "xml"]
 	path = xml
 	url = git@github.com:opscode-cookbooks/xml.git
+[submodule "newrelic"]
+	path = newrelic
+	url = git@github.com:escapestudios-cookbooks/newrelic.git
