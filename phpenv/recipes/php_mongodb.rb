@@ -9,6 +9,10 @@ template 'mongo.ini' do
     path "/etc/php.d/mongo.ini"
   when 'debian','ubuntu'
     path "/etc/php5/conf.d/mongo.ini"
+        not_if { ::File.exist?("/etc/php5/conf.d")}
+
+    path "/etc/php5/mods-available/mongo.ini"
+        not_if { ::File.exist?("/etc/php5/mods-available")}
   end
   source 'mongo.ini.erb'
   owner 'root'

@@ -9,6 +9,10 @@ template 'redis.ini' do
     path "/etc/php.d/redis.ini"
   when 'debian','ubuntu'
     path "/etc/php5/conf.d/redis.ini"
+        not_if { ::File.exist?("/etc/php5/conf.d")}
+
+    path "/etc/php5/mods-available/redis.ini"
+        not_if { ::File.exist?("/etc/php5/mods-available")}
   end
   source 'redis.ini.erb'
   owner 'root'
