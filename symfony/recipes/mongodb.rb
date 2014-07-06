@@ -1,3 +1,9 @@
+#
+# DEPRECATED SINCE VERSION 1.0.0 TO BE REMOVED IN VERSION NEXT VERSION
+# USE phpenv::php_mongodb INSTEAD.
+#
+# NOTE: THIS RECIPE ONLY WORKS WITH PHP 5.3.x
+#
 execute 'install_php_mongo_driver' do
   command "pecl install mongo"
   action :run
