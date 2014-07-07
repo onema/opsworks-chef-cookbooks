@@ -23,8 +23,14 @@ end
 
 case node[:platform]
 when 'debian','ubuntu'
-  execute "enable_mongo" do
-    command "php5enmod mongo && service apache restart"
+  script "enable_php_mongo_driver" do
+    interpreter "bash"
+    user "root"
+    cwd "/"
+    code <<-EOH
+      php5enmod mongo
+      service apache restart
+    EOH
     not_if { ::File.exist?("/etc/php5/mods-available")}
   end
 end
