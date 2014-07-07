@@ -1,6 +1,6 @@
 module Phpenv
   module Helper
-    def pecl_install(module_name)
+    def self.pecl_install(module_name)
 
       # Use pecl to install module
       execute "install_php_#{module_name}_module" do
