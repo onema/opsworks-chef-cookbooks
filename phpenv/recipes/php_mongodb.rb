@@ -29,7 +29,6 @@ template "#{path_to_ini}/mongo.ini" do
   )
   only_if do
     File.directory?("#{path_to_ini}")
-  end
   notifies :restart, resources(:service => 'apache2')
 end
 
