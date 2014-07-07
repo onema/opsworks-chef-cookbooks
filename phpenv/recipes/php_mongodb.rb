@@ -1,3 +1,3 @@
 # Install a pecl module
-include InstallPhpModule
-install_module("mongo")
+Chef::Resource::User.send(:include, Phpenv::Helper)
+pecl_install("mongo")

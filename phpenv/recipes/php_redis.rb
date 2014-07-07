@@ -1,3 +1,3 @@
 # Install a pecl module
-include InstallPhpModule
-install_module("redis")
+Chef::Resource::User.send(:include, Phpenv::Helper)
+pecl_install("redis")
