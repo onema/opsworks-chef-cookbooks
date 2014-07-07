@@ -21,9 +21,9 @@ template 'mongo.ini' do
   notifies :restart, resources(:service => 'apache2')
 end
 
-execute "enable_mongo" do
-  case node[:platform]
-  when 'debian','ubuntu'
+case node[:platform]
+when 'debian','ubuntu'
+  execute "enable_mongo" do
     command "php5enmod mongo && service apache restart"
     not_if { ::File.exist?("/etc/php5/mods-available")}
   end

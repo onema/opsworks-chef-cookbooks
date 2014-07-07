@@ -21,9 +21,9 @@ template 'redis.ini' do
   notifies :restart, resources(:service => 'apache2')
 end
 
-execute "enable_redis" do
-  case node[:platform]
-  when 'debian','ubuntu'
+case node[:platform]
+when 'debian','ubuntu'
+  execute "enable_redis" do
     command "php5enmod reids && service apache restart"
     not_if { ::File.exist?("/etc/php5/mods-available")}
   end
