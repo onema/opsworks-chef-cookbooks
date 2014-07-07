@@ -28,6 +28,7 @@ template "#{path_to_ini}/mongo.ini" do
   )
   only_if do
     File.directory?("#{path_to_ini}")
+  end
   notifies :restart, resources(:service => 'apache2')
 end
 
@@ -42,6 +43,8 @@ when 'debian','ubuntu'
       php5enmod mongo
       service apache restart
     EOH
-    not_if { ::File.exist?("#{path_to_ini}")}
+    only_if do
+      File.directory?("#{path_to_ini}")
+    end
   end
 end
