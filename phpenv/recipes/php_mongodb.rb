@@ -24,7 +24,7 @@ end
 execute "enable_mongo" do
   case node[:platform]
   when 'debian','ubuntu'
-    command "php5enmod mongo"
+    command "php5enmod mongo && service apache restart"
     not_if { ::File.exist?("/etc/php5/mods-available")}
   end
 end

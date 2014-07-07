@@ -24,7 +24,7 @@ end
 execute "enable_redis" do
   case node[:platform]
   when 'debian','ubuntu'
-    command "php5enmod reids"
+    command "php5enmod reids && service apache restart"
     not_if { ::File.exist?("/etc/php5/mods-available")}
   end
 end
