@@ -6,16 +6,15 @@ end
 
 # Find out where to place the ini file
 case node[:platform]
-  when 'centos','redhat','fedora','amazon'
-    path_to_ini = "/etc/php.d"
+when 'centos','redhat','fedora','amazon'
+  path_to_ini = "/etc/php.d"
 
-  when 'debian','ubuntu'
-    path_to_ini "/etc/php5/conf.d"
-        not_if { ::File.exist?("/etc/php5/conf.d")}
+when 'debian','ubuntu'
+  path_to_ini "/etc/php5/conf.d"
+    not_if { ::File.exist?("/etc/php5/conf.d")}
 
-    path_to_ini "/etc/php5/mods-available"
-        not_if { ::File.exist?("/etc/php5/mods-available")}
-  end
+  path_to_ini "/etc/php5/mods-available"
+    not_if { ::File.exist?("/etc/php5/mods-available")}
 end
 
 # Use template resource to set the ini file in the correct location
