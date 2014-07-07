@@ -20,3 +20,10 @@ template 'mongo.ini' do
   mode 0644
   notifies :restart, resources(:service => 'apache2')
 end
+
+when 'debian','ubuntu'
+  execute "enable_mongo" do
+    command "php5enmod mongo"
+    not_if { ::File.exist?("/etc/php5/mods-available")}
+  end
+end
