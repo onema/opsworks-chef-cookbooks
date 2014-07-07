@@ -1,7 +1,8 @@
 module Phpenv
   module Helper
 
-    include Chef::Resource
+    include Chef::Resource::Template
+    include Chef::Resource::Execute
 
     def self.pecl_install(module_name)
 
