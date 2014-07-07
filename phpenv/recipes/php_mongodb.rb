@@ -44,7 +44,7 @@ when 'debian','ubuntu'
       service apache restart
     EOH
     only_if do
-      File.directory?("#{path_to_ini}")
+      File.directory?("/etc/php5/mods-available")
     end
   end
 end
