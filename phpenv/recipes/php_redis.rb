@@ -22,6 +22,7 @@ template 'redis.ini' do
 end
 
 execute "enable_redis" do
+  case node[:platform]
   when 'debian','ubuntu'
     command "php5enmod reids"
     not_if { ::File.exist?("/etc/php5/mods-available")}
