@@ -1,3 +1,3 @@
 # Install a pecl module
-Chef::Resource::User.send(:include, Phpenv::Helper)
+Chef::Resource.send(:include, Phpenv::Helper)
 pecl_install("mongo")
