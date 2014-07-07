@@ -1,5 +1,8 @@
 module Phpenv
   module Helper
+
+    include Chef::Resource
+
     def self.pecl_install(module_name)
 
       # Use pecl to install module
