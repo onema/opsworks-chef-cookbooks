@@ -1,5 +1,5 @@
 #
-# Doctrine MongoDB database migration.
+# Doctrine MongoDB schema update.
 #
 node[:deploy].each do |application, deploy|
   script "run_migration" do
@@ -10,4 +10,4 @@ node[:deploy].each do |application, deploy|
     php app/console doctrine:mongodb:schema:update 
     EOH
   end
-end 
+end
