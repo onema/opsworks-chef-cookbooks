@@ -10,11 +10,13 @@ case node[:platform]
   when "centos","redhat","fedora","amazon"
     config_dir = "/etc/php.d/#{module_name}.ini"
   when "debian","ubuntu"
-    config_dir = "/etc/php5/conf.d/#{module_name}.ini"
-        only_if { ::File.exists?("/etc/php5/conf.d")}
+    if ::File.exists?("/etc/php5/conf.d"
+      config_dir = "/etc/php5/conf.d/#{module_name}.ini"
+    end
 
-    config_dir = "/etc/php5/mods-available/#{module_name}.ini"
-        only_if { ::File.exists?("/etc/php5/mods-available")}
+    if ::File.exists?("/etc/php5/mods-available")
+      config_dir = "/etc/php5/mods-available/#{module_name}.ini"
+    end
 end
 
 # Create template
