@@ -13,10 +13,10 @@ template "#{module_name}.ini" do
     path "/etc/php.d/#{module_name}.ini"
   when "debian","ubuntu"
     path "/etc/php5/conf.d/#{module_name}.ini"
-        only_if { ::File.exist?("/etc/php5/conf.d")}
+        only_if { ::File.directory?("/etc/php5/conf.d")}
 
     path "/etc/php5/mods-available/#{module_name}.ini"
-        only_if { ::File.exist?("/etc/php5/mods-available")}
+        only_if { ::File.directory?("/etc/php5/mods-available")}
   end
   source "php_module.ini.erb"
   owner "root"
