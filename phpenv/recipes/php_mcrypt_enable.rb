@@ -9,7 +9,7 @@ when "debian","ubuntu"
 
   execute "enable_#{module_name}" do
     user "root"
-    command "php5enmod #{module_name} && service apache restart"
+    command "php5enmod #{module_name} && service apache2 restart"
     only_if { ::File.exist?("/etc/php5/mods-available/#{module_name}")}
   end
 end
