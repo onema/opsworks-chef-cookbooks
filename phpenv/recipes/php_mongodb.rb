@@ -15,11 +15,11 @@ template "#{module_name}.ini" do
       path "/etc/php.d/#{module_name}.ini"
     when "debian","ubuntu"
 
-      path "/etc/php5/conf.d/#{module_name}.ini"
-        only_if {::File.directory?("/etc/php5/conf.d")}
-
-      path "/etc/php5/mods-available/#{module_name}.ini"
-        only_if {::File.directory?("/etc/php5/mods-available")}
+      if node[:platform_version].to_f >= 14.04
+        path "/etc/php5/mods-available/#{module_name}.ini"
+      else
+        path "/etc/php5/conf.d/#{module_name}.ini"
+      end
 
   end
   owner "root"
