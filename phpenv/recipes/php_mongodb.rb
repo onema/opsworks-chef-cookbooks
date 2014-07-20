@@ -15,7 +15,7 @@ template "#{module_name}.ini" do
       path "/etc/php.d/#{module_name}.ini"
     when "debian","ubuntu"
 
-      if ::File.directory?("/etc/php5/conf.d/")
+      if ::File.directory?("/etc/php5/conf.d")
         path "/etc/php5/conf.d/#{module_name}.ini"
       else
         path "/etc/php5/mods-available/#{module_name}.ini"
