@@ -10,7 +10,8 @@ case node[:platform]
   when "centos","redhat","fedora","amazon"
     config_dir = "/etc/php.d/#{module_name}.ini"
   when "debian","ubuntu"
-    if ::File.exists?("/etc/php5/conf.d"
+
+    if ::File.exists?("/etc/php5/conf.d")
       config_dir = "/etc/php5/conf.d/#{module_name}.ini"
     end
 
