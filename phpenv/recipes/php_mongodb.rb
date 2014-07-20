@@ -6,22 +6,21 @@ execute "install_php_#{module_name}_module" do
   action :run
 end
 
-case node[:platform]
-  when "centos","redhat","fedora","amazon"
-    config_dir = "/etc/php.d/"
-  when "debian","ubuntu"
-
-    if ::File.directory?("/etc/php5/conf.d/")
-      config_dir = "/etc/php5/conf.d"
-
-    elseif ::File.directory?("/etc/php5/mods-available/")
-      config_dir = "/etc/php5/mods-available"
-    end
-end
 
 # Create template
-template "#{config_dir}/#{module_name}.ini" do
+template "#{module_name}.ini" do
   source "php_module.ini.erb"
+  case node[:platform]
+    when "centos","redhat","fedora","amazon"
+      path "/etc/php.d/#{module_name}.ini"
+    when "debian","ubuntu"
+
+      if ::File.directory?("/etc/php5/conf.d/")
+        path "/etc/php5/conf.d/#{module_name}.ini"
+      else
+        path "/etc/php5/mods-available/#{module_name}.ini"
+      end
+  end
   owner "root"
   group "root"
   mode "0644"
@@ -37,7 +36,8 @@ case node[:platform]
 when "debian","ubuntu"
   execute "enable_#{module_name}" do
     user "root"
-    command "php5enmod #{module_name} && service apache2 restart"
+    command "php5enmod #{module_name}"
     only_if { ::File.exist?("/etc/php5/mods-available/#{module_name}.ini")}
+    notifies :restart, resources(:service => "apache2")
   end
 end
