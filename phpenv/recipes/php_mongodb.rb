@@ -27,7 +27,7 @@ template "#{config_dir}/#{module_name}.ini" do
   group "root"
   mode "0644"
   variables(
-    :module_name => "#{module_name}"
+    :name => "#{module_name}"
   )
   notifies :restart, resources(:service => "apache2")
 end
