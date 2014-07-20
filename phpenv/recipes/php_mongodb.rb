@@ -8,14 +8,14 @@ end
 
 case node[:platform]
   when "centos","redhat","fedora","amazon"
-    config_dir = "/etc/php.d/#{module_name}.ini"
+    config_dir = "/etc/php.d/"
   when "debian","ubuntu"
 
-    if ::File.directory?("/etc/php5/conf.d")
-      config_dir = "/etc/php5/conf.d/#{module_name}.ini"
+    if ::File.directory?("/etc/php5/conf.d/")
+      config_dir = "/etc/php5/conf.d"
 
-    elseif ::File.directory?("/etc/php5/mods-available")
-      config_dir = "/etc/php5/mods-available/#{module_name}.ini"
+    elseif ::File.directory?("/etc/php5/mods-available/")
+      config_dir = "/etc/php5/mods-available"
     end
 end
 
