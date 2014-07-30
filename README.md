@@ -158,6 +158,11 @@ See these references for more info:
 - [Symfony2, Composer, Capifony and an EC2 Micro instance](http://jonathaningram.com.au/category/composerphp/)
 - [ErrorException: proc_open(): fork failed - Cannot allocate memory in phar](https://github.com/composer/composer/issues/945)
 
+###phpenv::php_mcrypt_enable
+This recipe should only be used with the OpsWorks OS Package php5-mcrypt in Ubuntu 14.04. This package is not enable by default and the purpose of this recipe is to run `php5enmod mcrypt` if the file `mcrypt.ini` exisists with in `/etc/php5/mods-available/`.
+
+Use recipe on **Setup** ONLY.
+
 ###phpenv::php_mongodb
 This recipe installs the mongodb php module using PECL (Requires the **php-pear** OS package). 
 
