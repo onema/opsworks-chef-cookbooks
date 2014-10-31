@@ -17,23 +17,6 @@ node[:deploy].each do |application, deploy|
     EOH
   end
 
-  # Place environment variables in the .htaccess file in the web-root 
-  template "#{deploy[:deploy_to]}/current/web/.htaccess" do
-    source "htaccess.erb"
-    owner deploy[:user] 
-    group deploy[:group]
-    mode "0660"
-
-    variables( 
-        :env => (node[:custom_env] rescue nil), 
-        :application => "#{application}" 
-    )
-
-    only_if do
-     File.directory?("#{deploy[:deploy_to]}/current/web")
-    end
-  end
-
   # Install dependencies using composer install
   include_recipe 'composer::install'
 

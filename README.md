@@ -30,7 +30,7 @@ Some of the cookbooks functionality include:
 * mod_env must be enabled. 
 
 # Version
-1.0.3
+1.1.0
 
 # Credits
 Some parts of this code where taken from the [ace-cookbooks opsworks_app_environment](https://github.com/ace-cookbooks/opsworks_app_environment). Also see [this](https://forums.aws.amazon.com/thread.jspa?threadID=118107).
@@ -470,7 +470,6 @@ This recipe installs acl.
 ###symfony::configure
 This recipe requires acl_setup. This recipe should be broken down into multiple ones as it is currently a collection of multiple actions:
 - It gives the symfony application write access to  ```app/cache/*``` and ```app/logs/*```. 
-- Creates custom .htaccess to setup environment variables similar to the env_vars recipe for FuelPHP.
 - Downloads Composer and runs install command. 
 - Includes the symfony::paramconfig recipe
 - Executes `php app/console cache:clear --env=prod --no-debug` if the `warmup_cache` option is **defined** in the application configuration
@@ -494,9 +493,6 @@ This recipe creates a custom parameters.yml using values from the custom Chef JS
 { 
     "custom_env": {
         "production_site": {
-            "values" : [ 
-                // for custom environment values 
-            ],
             "parameters" : [ 
                 "locale: en",
                 "database_name: my_database_name"
