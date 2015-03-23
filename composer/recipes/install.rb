@@ -4,10 +4,10 @@
 #
 node[:deploy].each do |application, deploy|
   script "install_composer" do
+    only_if { application[:application_type] == "php" }
     interpreter "bash"
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
-    only_if { application[:application_type] == "php" }
     code <<-EOH
     curl -s https://getcomposer.org/installer | php
     php composer.phar install --no-dev --no-interaction --optimize-autoloader
