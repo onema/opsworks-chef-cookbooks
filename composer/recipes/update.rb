@@ -7,9 +7,10 @@ node[:deploy].each do |application, deploy|
     interpreter "bash"
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
+    only_if { application[:application_type] == "php" }
     code <<-EOH
     curl -s https://getcomposer.org/installer | php
     php composer.phar update
     EOH
   end
-end 
+end
