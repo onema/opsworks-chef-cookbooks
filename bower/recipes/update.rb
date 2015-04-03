@@ -4,7 +4,7 @@
 #
 node[:deploy].each do |application, deploy|
    execute "bower_install" do
-        command "bower install --allow-root"
+        command "bower update"
         cwd "#{deploy[:deploy_to]}/current"
    end
 end
