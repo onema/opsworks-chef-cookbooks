@@ -11,5 +11,6 @@ node[:deploy].each do |application, deploy|
     curl -s https://getcomposer.org/installer | php
     php composer.phar update
     EOH
+    only_if { ::File.exists?("#{deploy[:deploy_to]}/current/composer.json") }
   end
 end 
