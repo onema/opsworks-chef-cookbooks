@@ -1,5 +1,0 @@
-# Parameter values for application <%= @application %>
-parameters:
-<% @parameters[@application.to_s][:parameters].sort.each do | param_value | %> 
-    <%= param_value %> 
-<% end %>
