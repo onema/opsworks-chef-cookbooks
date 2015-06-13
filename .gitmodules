@@ -7,6 +7,3 @@
 [submodule "yum"]
 	path = yum
 	url = git@github.com:opscode-cookbooks/yum.git
-[submodule "xml"]
-	path = xml
-	url = git@github.com:opscode-cookbooks/xml.git
