@@ -318,7 +318,7 @@ Similar to install this recipe will download the latest version of composer from
 to the current deployment directory and will run ```$ php composer.phar update```.
 
 ##fuel
-This is a collection of recipes for the FuelPHP framework.
+**DEPRECATED - WILL BE REMOVED IN VERSION 2.0.0** This is a collection of recipes for the FuelPHP framework.
 
 ###fuel::env_vars
 **Deprecated, use phpenv::htaccess_env_vars or phpenv::php_env_vars** 
