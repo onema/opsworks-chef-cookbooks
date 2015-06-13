@@ -4,6 +4,3 @@
 [submodule "apt"]
 	path = apt
 	url = git@github.com:opscode-cookbooks/apt.git
-[submodule "yum"]
-	path = yum
-	url = git@github.com:opscode-cookbooks/yum.git
