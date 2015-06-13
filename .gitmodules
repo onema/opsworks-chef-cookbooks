@@ -1,6 +1,1 @@
-[submodule "mongodb"]
-	path = mongodb
-	url = git@github.com:alleluu/chef-mongodb.git
-[submodule "apt"]
-	path = apt
-	url = git@github.com:opscode-cookbooks/apt.git
+
