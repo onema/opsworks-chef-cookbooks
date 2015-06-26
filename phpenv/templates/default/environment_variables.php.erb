@@ -3,5 +3,6 @@
  * Environment Variables for application <%= @application %>
  */
 <% @env[@application.to_s][:env_vars].sort.each do | env_value | %> 
-    putenv("<%= env_value %>");
+    <%= key_value = env_value.split.join("=") %>
+    putenv("<%= key_value %>");
 <% end %>
