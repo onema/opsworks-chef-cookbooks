@@ -4,7 +4,6 @@ cookbook 'apt', '>= 2.3.8', git: 'git://github.com/opscode-cookbooks/apt.git', t
 cookbook 'build-essential', '>= 2.0.0', git: 'git://github.com/opscode-cookbooks/build-essential.git', tag: 'v2.0.4'
 cookbook 'composer', '>= 0.1.0', 'git://github.com:onema/opsworks-composer.git', tag: '0.1.0'
 cookbook 'cronjobs', '>= 0.1.0', 'git://github.com:onema/opsworks-cronjobs.git', tag: '0.1.0'
-cookbook 'phpenv', '>= 0.1.0', 'git://github.com:onema/opsworks-phpenv.git', tag: '0.1.0'
 cookbook 'symfony', '>= 0.1.0', 'git://github.com:onema/opsworks-symfony.git', tag: '0.1.0'
 cookbook 'workers', '>= 0.1.0', 'git://github.com:onema/opsworks-workers.git', tag: '0.1.0'
 cookbook 'yum', git: 'git://github.com/opscode-cookbooks/yum.git', tag: 'v3.1.0'
