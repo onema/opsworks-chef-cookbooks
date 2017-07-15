@@ -1,4 +1,8 @@
 # AWS OpstWorks PHP Cookbooks. 
+> #NOTE
+>
+> I'm currently working on version 2 of this cookbook. In version 2  most of the cookbooks included here will be broken down into small repositories added as dependencies via Berkshelf. Several Cookbooks have been deprecated and will not be part of version 2, these include adwords and fuel. Please use the taged releases and avoid referencing the branches directly OR use the branch `1.x`.
+
 
 # Summary
 > "OpsWorks is a DevOps solution for managing the coplete application lifecycle, 
@@ -318,7 +322,7 @@ Similar to install this recipe will download the latest version of composer from
 to the current deployment directory and will run ```$ php composer.phar update```.
 
 ##fuel
-This is a collection of recipes for the FuelPHP framework.
+**DEPRECATED - WILL BE REMOVED IN VERSION 2.0.0** This is a collection of recipes for the FuelPHP framework.
 
 ###fuel::env_vars
 **Deprecated, use phpenv::htaccess_env_vars or phpenv::php_env_vars** 
